@@ -47,6 +47,7 @@ function genevents(start, end, itm, loca) {
     loc.innerHTML = loca;
 
     evnt.style.backgroundColor = "white";
+    evnt.style.position = "relative";
     evnt.style.zIndex = "1";
 
 
@@ -179,6 +180,8 @@ Createevents("14", "15", "Sample Item", "Sample location");
 Createevents("17", "20", "Sample Item", "Sample location");
 Createevents("17.5", "19", "Sample Item", "Sample location");
 Createevents("17", "17.5", "Sample Item", "Sample location");
+Createevents("19", "20", "Sample Item", "Sample location");
+
 
 
 
