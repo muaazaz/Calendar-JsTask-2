@@ -40,14 +40,16 @@ body {
 
 #daily {
     display: flex;
-    height: 5rem;
+    flex-direction: column;
+    height: auto;
     background-color: lightgrey;
     justify-content: right;
     align-items: center;
 }
 
-#daily #evt {
+.evt {
     display: flex;
+    margin: 0.2% 0;
     width: 60rem;
     height: 90%;
     background-color: white;
@@ -57,21 +59,16 @@ body {
     text-indent: 0.5rem;
 }
 
-#evt>p,
+.evt > p,
 h1 {
     font-size: larger;
 }
 
-#gry {
+.gry {
     color: grey;
 }
 
-#dash {
-    font-size: 2rem;
-    color: grey;
-}
-
-#grn {
+.grn {
     color: rgb(30, 143, 30);
 }
 
