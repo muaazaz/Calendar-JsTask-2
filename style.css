@@ -43,8 +43,8 @@ body {
     flex-direction: column;
     height: auto;
     background-color: lightgrey;
-    justify-content: right;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .evt {
@@ -141,8 +141,6 @@ h1 {
     line-height: 1px;
     text-indent: 10px;
     text-align: start;
-    /* padding: 0 1rem; */
-    /* flex-grow: 1; */
     margin-left: 8rem;
     border-left: 1rem solid rgb(0, 191, 0);
 }

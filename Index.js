@@ -1,4 +1,4 @@
-import {Array, Daily} from "./data.js";
+import { Array, Daily } from "./data.js";
 
 var count = 1;
 var arr = [];
@@ -8,6 +8,7 @@ var mrg = 0;
 var start1 = 0;
 var start2 = 0;
 var isvalid = false;
+var PM = false;
 var counter = 0;
 
 
@@ -19,13 +20,13 @@ let day = notime.split(" ");
 document.getElementById("dt").innerHTML = day[0] + ", " + day[1] + " " + day[2];
 
 function createDailyevnt() {
-    Daily.forEach((element)=>{
+    Daily.forEach((element) => {
         let alldayevnt = document.createElement('div');
         let time = document.createElement('p');
         let item = document.createElement('h1');
         let loc = document.createElement('p');
 
-        time.setAttribute("class","gry");
+        time.setAttribute("class", "gry");
         alldayevnt.setAttribute("class", "evt");
         loc.setAttribute("class", "grn");
 
@@ -158,6 +159,14 @@ function Createevents() {
         let end = element.end;
         let item = element.item;
         let loc = element.loc;
+
+
+        let tm1 = start.split(':');
+        let tm2 = end.split(':');
+
+        start = convert(start, tm1);
+        end = convert(end, tm2)
+
         check(start);
         if (isvalid) {
             start1 = start.split('.')
@@ -197,7 +206,59 @@ function check(start) {
 }
 
 
+//To check time for am or pm and converting it in 24 hours format
+function checkampm(tm) {
+    switch (tm) {
+        case '1':
+            return (+tm + 12).toString();
+            break;
+        case '2':
+            return (+tm + 12).toString();
+            break;
+        case '3':
+            return (+tm + 12).toString();
+            break;
+        case '4':
+            return (+tm + 12).toString();
+            break;
+        case '5':
+            return (+tm + 12).toString();
+            break;
+        case '6':
+            return (+tm + 12).toString();
+            break;
+        case '7':
+            return (+tm + 12).toString();
+            break;
+        case '8':
+            return (+tm + 12).toString();
+            break;
+
+        default:
+            return tm;
+            break;
+    }
+}
+
+//Converts :30 to .5 for easier convienience in code
+function checkhalf(tm) {
+    return '.5';
+}
+
+//Convert fully to 24 hours format
+function convert(tm, tm1) {
+    tm1[0] = checkampm(tm1[0]);
+    if (tm1[1]) {
+        tm1[1] = checkhalf(tm1[1]);
+        tm = tm1[0] + tm1[1];
+        return tm;
+    } else {
+        tm = tm1[0];
+        return tm;
+    }
+}
 //Create Daily events
 createDailyevnt();
 //Creating timely events
 Createevents();
+// check2();
