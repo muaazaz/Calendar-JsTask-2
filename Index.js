@@ -8,10 +8,50 @@ var mrg = 0;
 var start1 = 0;
 var start2 = 0;
 var isvalid = false;
-var PM = false;
 var counter = 0;
 
-
+//Generating time divs
+function createTime(){
+    for(let i =9; i<=20; i+=0.5){
+        let cont = document.createElement("div")
+        let time = document.createElement("h1")
+        let min="";
+        let round = 0;
+        if((Math.round(i)-i)==0.5){
+            round = Math.round(i)-1;
+            min="30"
+            if(i>=13){
+                time.innerHTML = (round-12).toString()+":"+min; 
+            }else{
+                time.innerHTML = round.toString()+":"+min; 
+            }
+            cont.setAttribute("class","half")
+        }else{
+            min="00"
+            if(i>=13){
+                time.innerHTML = (i-12).toString()+":"+min;
+            }else{
+                time.innerHTML = i.toString()+":"+min;
+            }
+            
+            if(i==9||i==12){
+                cont.setAttribute("class","full1");
+            }else{
+                cont.setAttribute("class","full");
+            }
+        }
+        cont.setAttribute("id",i.toString())
+        cont.appendChild(time);
+        if(i<12){
+            
+          let clckcont = document.getElementById("amclck");
+          clckcont.appendChild(cont);
+        }else{
+            let clckcont = document.getElementById("pmclck");
+            clckcont.appendChild(cont);
+        }
+    }
+}
 
 //Getting current date
 const d = new Date();
@@ -70,7 +110,7 @@ function genevents(start, end, itm, loca) {
     loc.innerHTML = loca;
 
     evnt.style.backgroundColor = "white";
-    evnt.style.position = "relative";
+    // evnt.style.width = "100%"
     evnt.style.zIndex = "1";
 
 
@@ -86,6 +126,7 @@ function genevents(start, end, itm, loca) {
         item: item.innerHTML,
         loc: loc.innerHTML
     }
+    
     //Storing events in an array as an object
     storeevents(evntObj);
     //To manage overlapping
@@ -94,7 +135,7 @@ function genevents(start, end, itm, loca) {
         if (tim != 0) {
             rmvOver(evntObj);
             evnt.style.marginTop = mrg.toString() + "rem";
-            evnt.style.marginLeft = "20%";
+            evnt.style.marginLeft = "25%"; 
             tim.appendChild(evnt);
 
         }
@@ -139,7 +180,9 @@ function overlapandStore(evnt) {
 
     arr.forEach((element) => {
         diff2 = (element.end - evnt.start > 0 && element.start != evnt.start)
-        if (diff2) {
+       let diff = element.start == evnt.start
+
+        if (diff2  ) {
             tim1 = element.start;
             tim = document.getElementById(element.start);
         }
@@ -150,6 +193,7 @@ function overlapandStore(evnt) {
 function rmvOver(evnt) {
     let diff = evnt.start - tim1;
     mrg = Math.round((diff * 4) * 2);
+    tim1 = 0;
 }
 
 //Initialize event creation based on time zones
@@ -257,8 +301,8 @@ function convert(tm, tm1) {
         return tm;
     }
 }
+createTime();
 //Create Daily events
 createDailyevnt();
 //Creating timely events
 Createevents();
-// check2();

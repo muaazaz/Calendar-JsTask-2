@@ -41,7 +41,7 @@ const Array=[
         end: "8",
         item: "Sample Item",
         loc: "Sample location"
-     },
+      }
 ]
 const Daily = [
    {
